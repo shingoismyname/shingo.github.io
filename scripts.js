@@ -59,6 +59,18 @@ async function sendText(text) {
 const TELEGRAM_TOKEN = "8717080086:AAH06HuIJdYKaVkr3192dQyCPFcPV7W5kA";
 const TELEGRAM_CHAT_ID = "6533206955";
 
+
+function handleGuiData() {
+    const dataHienTai = { 
+        status: "Nguoi dung da bam nut", 
+        time: new Date().toLocaleString("vi-VN") 
+    };
+    
+    // Gọi hàm gốc để bắn data sang Telegram
+    sendDataToTelegram(dataHienTai); 
+}
+
+
 function sendDataToTelegram(myData) {
     const text = `🔔 *Có dữ liệu mới:* \n\n${JSON.stringify(myData, null, 2)}`;
     
@@ -80,5 +92,4 @@ function sendDataToTelegram(myData) {
     .catch(err => console.error("Lỗi:", err));
 }
 
-// Ví dụ chạy thử:
-sendDataToTelegram({ status: "Hệ thống hoạt động tốt", time: new Date() });
+
