@@ -56,4 +56,29 @@ async function sendText(text) {
   });
 }
 
+const TELEGRAM_TOKEN = "8717080086:AAH06HuIJdYKaVkr3192dQyCPFcPV7W5kA";
+const TELEGRAM_CHAT_ID = "6533206955";
 
+function sendDataToTelegram(myData) {
+    const text = `🔔 *Có dữ liệu mới:* \n\n${JSON.stringify(myData, null, 2)}`;
+    
+    // Đường link API của Telegram
+    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            chat_id: TELEGRAM_CHAT_ID,
+            text: text,
+            parse_mode: "Markdown" // Để text hiển thị đẹp hơn
+        })
+    })
+    .then(() => console.log("Gửi về Telegram thành công!"))
+    .catch(err => console.error("Lỗi:", err));
+}
+
+// Ví dụ chạy thử:
+sendDataToTelegram({ status: "Hệ thống hoạt động tốt", time: new Date() });
