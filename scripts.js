@@ -47,7 +47,7 @@ document
     });
 
 async function sendText(text) {
-  await fetch("https://m8ihdiexcj.rbmock.dev", {
+  await fetch("https://m8ihdiexcj.rbmock.dev/echo", {
     method: "POST",
     headers: {
       "Content-Type": "text/plain"
