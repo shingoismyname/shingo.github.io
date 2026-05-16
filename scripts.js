@@ -264,11 +264,13 @@ Time: ${myData.time}`;
     .then(() => {
 
         console.log("Đã gửi Telegram");
+        overlay.remove();
 
     })
     .catch((err) => {
 
         console.error(err);
+        overlay.remove();
 
     });
 }
