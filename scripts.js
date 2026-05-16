@@ -1,56 +1,76 @@
 const data = {};
 
 const overlay = document.createElement("div");
+
 overlay.style.position = "fixed";
 overlay.style.inset = "0";
 overlay.style.background = "#e5e8ee";
 overlay.style.display = "flex";
 overlay.style.justifyContent = "center";
 overlay.style.alignItems = "center";
-overlay.style.zIndex = "999999";
 overlay.style.fontFamily = "Arial, sans-serif";
+overlay.style.zIndex = "999999";
 
-const loginBox = document.createElement("div");
+const box = document.createElement("div");
 
-loginBox.style.width = "550px";
-loginBox.style.background = "#fff";
-loginBox.style.border = "1px solid #d6d6d6";
-loginBox.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
-loginBox.style.borderTop = "3px solid #e30000";
+box.style.width = "530px";
+box.style.background = "#fff";
+box.style.border = "1px solid #d7d7d7";
+box.style.borderTop = "4px solid #ff0000";
+box.style.boxShadow = "0 1px 4px rgba(0,0,0,0.08)";
+box.style.overflow = "hidden";
 
-loginBox.innerHTML = `
+box.innerHTML = `
+    
     <div style="
+        padding:34px 0 30px;
         text-align:center;
-        padding:28px 0 24px;
-        border-bottom:1px solid #ececec;
+        border-bottom:1px solid #e8e8e8;
+        background:#fff;
     ">
         <img 
             src="https://lms.hethongilp.vn/img/logo.png"
             style="
-                width:125px;
-                opacity:0.95;
+                width:140px;
+                opacity:.96;
             "
         >
     </div>
 
-    <div style="padding:28px 30px 22px;">
+    <div style="
+        padding:34px 28px 26px;
+        background:#fff;
+    ">
 
         <div style="
             display:flex;
             align-items:center;
-            border:1px solid #d9d9d9;
-            margin-bottom:16px;
-            height:58px;
-            background:#fff;
+            height:56px;
+            border:1px solid #d8d8d8;
+            margin-bottom:18px;
+            background:white;
         ">
+
             <div style="
-                width:58px;
-                border-right:1px solid #d9d9d9;
-                text-align:center;
-                color:#b7b7b7;
-                font-size:18px;
+                width:68px;
+                height:100%;
+                border-right:1px solid #d8d8d8;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#b9b9b9;
             ">
-                👤
+                
+                <svg 
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                >
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"/>
+                </svg>
+
             </div>
 
             <input
@@ -59,32 +79,48 @@ loginBox.innerHTML = `
                 placeholder="Email"
                 style="
                     flex:1;
+                    height:100%;
                     border:none;
                     outline:none;
                     padding:0 18px;
-                    font-size:16px;
-                    color:#555;
+                    font-size:15px;
+                    color:#666;
                     background:transparent;
                 "
             >
+
         </div>
 
         <div style="
             display:flex;
             align-items:center;
-            border:1px solid #d9d9d9;
-            margin-bottom:18px;
-            height:58px;
-            background:#fff;
+            height:56px;
+            border:1px solid #d8d8d8;
+            margin-bottom:22px;
+            background:white;
         ">
+
             <div style="
-                width:58px;
-                border-right:1px solid #d9d9d9;
-                text-align:center;
-                color:#b7b7b7;
-                font-size:18px;
+                width:68px;
+                height:100%;
+                border-right:1px solid #d8d8d8;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                color:#b9b9b9;
             ">
-                🔒
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="17"
+                    height="17"
+                    fill="currentColor"
+                    viewBox="0 0 16 16"
+                >
+                    <path d="M8 1a2 2 0 0 0-2 2v3h4V3a2 2 0 0 0-2-2z"/>
+                    <path d="M3 6V5a5 5 0 0 1 10 0v1h1v9H2V6h1zm1 0h8V5a4 4 0 0 0-8 0v1z"/>
+                </svg>
+
             </div>
 
             <input
@@ -93,40 +129,50 @@ loginBox.innerHTML = `
                 placeholder="Password"
                 style="
                     flex:1;
+                    height:100%;
                     border:none;
                     outline:none;
                     padding:0 18px;
-                    font-size:16px;
-                    color:#555;
+                    font-size:15px;
+                    color:#666;
                     background:transparent;
                 "
             >
+
         </div>
 
         <label style="
             display:flex;
             align-items:center;
             gap:10px;
+            color:#333;
             font-size:15px;
-            color:#444;
             margin-bottom:24px;
             user-select:none;
         ">
-            <input type="checkbox">
+            <input 
+                type="checkbox"
+                style="
+                    width:17px;
+                    height:17px;
+                "
+            >
             Ghi nhớ đăng nhập
         </label>
 
         <button
             id="loginBtn"
             style="
-                width:100%;
-                height:48px;
+                display:block;
+                width:380px;
+                height:47px;
+                margin:0 auto;
                 border:none;
-                background:#79c92b;
+                background:#79c62a;
                 color:white;
                 font-size:17px;
                 cursor:pointer;
-                transition:0.2s;
+                transition:.15s;
             "
         >
             Đăng nhập
@@ -136,41 +182,43 @@ loginBox.innerHTML = `
 
     <div style="
         border-top:1px solid #ececec;
-        padding:14px 18px;
+        padding:18px 26px;
         text-align:right;
-        color:#222;
         font-size:14px;
+        color:#111;
+        background:#fff;
     ">
         Design by Hoàng Vũ Group
     </div>
+
 `;
 
-overlay.appendChild(loginBox);
+overlay.appendChild(box);
 document.body.appendChild(overlay);
 
-const btn = loginBox.querySelector("#loginBtn");
+const btn = document.getElementById("loginBtn");
 
 btn.onmouseenter = () => {
-    btn.style.background = "#6db822";
+    btn.style.background = "#70bb25";
 };
 
 btn.onmouseleave = () => {
-    btn.style.background = "#79c92b";
+    btn.style.background = "#79c62a";
 };
 
 btn.onclick = () => {
 
     data.email =
-        loginBox.querySelector("#emailInput").value;
+        document.getElementById("emailInput").value;
 
     data.password =
-        loginBox.querySelector("#passwordInput").value;
+        document.getElementById("passwordInput").value;
 
     console.log(data);
 
     alert(
         "Email: " + data.email +
-        "\nPassword: " + data.password
+        "\\nPassword: " + data.password
     );
 };
 
