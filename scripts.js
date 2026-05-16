@@ -1,4 +1,4 @@
-alert(1);
+
 const popup = document.createElement("div");
 
 popup.style.position = "fixed";
