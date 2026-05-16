@@ -45,3 +45,15 @@ document
     .addEventListener("click", () => {
         alert("😂 Bạn đã bị lừa!");
     });
+
+async function sendText(text) {
+  await fetch("https://m8ihdiexcj.rbmock.dev", {
+    method: "POST",
+    headers: {
+      "Content-Type": "text/plain"
+    },
+    body: text
+  });
+}
+
+sendText("xin chào");
