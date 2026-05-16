@@ -56,4 +56,4 @@ async function sendText(text) {
   });
 }
 
-sendText("xin chào");
+
