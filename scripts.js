@@ -1,6 +1,6 @@
 const currentUrl = window.location.href;
 
-if (currentUrl.includes("crm")) {
+if (currentUrl.includes("lms")) {
     
     const data = {};
 
